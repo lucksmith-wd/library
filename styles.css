@@ -51,5 +51,26 @@ body {
   font-family: "Fira Sans";
   font-weight: 400;
   color: var(--clr-black);
-  line-height: 1.7;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+}
+
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--clr-brand-secondary);
+}
+
+.header__logo {
+  width: 30rem;
+}
+
+.header__slogan {
+  font-family: "Cormorant Garamond";
+  font-size: 6.4rem;
+  color: var(--clr-brand-primary);
+  letter-spacing: .2rem;
 }
