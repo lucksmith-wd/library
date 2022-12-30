@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url(fonts/CormorantGaramond-BoldItalic.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url(fonts/FiraSans-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url(fonts/FiraSans-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --clr-brand-primary: #FFEC86;
+  --clr-brand-primary-light: #FFFDF2;
+  --clr-brand-secondary: #831919;
+  --clr-card: #24A58E;
+  --clr-error: #C80000;
+
+  --clr-black: #1D0D0D;
+  --clr-gray75: hsla(0, 37%, 8%, .75);
+  --clr-gray50: hsla(0, 37%, 8%, .5);
+  --clr-gray25: hsla(0, 37%, 8%, .25);
+  --clr-gray10: hsla(0, 37%, 8%, 0.1);
+  --clr-gray05: hsla(0, 37%, 8%, 0.05);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Fira Sans";
+  font-weight: 400;
+  color: var(--clr-black);
+  line-height: 1.7;
+}
