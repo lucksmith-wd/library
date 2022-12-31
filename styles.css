@@ -194,6 +194,35 @@ body {
   box-shadow: 0 1px 4px var(--clr-gray50);
 }
 
+
+
+.data-entry .empty input,
+.data-entry .illegal-format input {
+  border: 1px solid var(--clr-error);
+}
+
+.data-entry .empty::after,
+.data-entry .illegal-format::after {
+  font-size: 1.2rem;
+  color: var(--clr-error);
+}
+
+.data-entry .title.empty::after {
+  content: "Title is required";
+}
+
+.data-entry .author.empty::after {
+  content: "Author is required";
+}
+
+.data-entry .num-pages.empty::after {
+  content: "Page number is required";
+}
+
+.data-entry .num-pages.illegal-format::after {
+  content: "Page number can only contain numbers";
+}
+
 /* Book list *********************************************************/
 
 .book-list {

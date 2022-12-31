@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <title>Library</title>
 </head>
 
@@ -69,17 +69,17 @@
   </main>
   <!-- **************************************************************** -->
   <div class="editor">
-    <form class="data-entry" action="">
+    <form class="data-entry">
       <ul>
-        <li class="form-item">
+        <li class="form-item title">
           <label class="form-item__label" for="title">Title</label>
           <input class="form-item__input" type="text" name="title" id="title">
         </li>
-        <li class="form-item">
+        <li class="form-item author">
           <label class="form-item__label" for="author">Author</label>
           <input class="form-item__input" type="text" name="author" id="author">
         </li>
-        <li class="form-item">
+        <li class="form-item num-pages">
           <label class="form-item__label" for="num-pages">Pages</label>
           <input class="form-item__input" type="tel" name="num-pages" id="num-pages">
         </li>
@@ -88,7 +88,7 @@
           <label class="form-item__label" for="finished">Finished reading</label>
         </li>
       </ul>
-      <button type="button" class="btn btn-main">Add Book</button>
+      <button type="submit" class="btn btn-main">Add Book</button>
     </form>
 
     <!-- ************************************************************** -->
