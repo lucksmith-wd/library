@@ -45,6 +45,13 @@ inputFields.forEach((field) => field.addEventListener('blur', validate));
 
 // *********************Business logic****************************
 
+function Book(allInputs) {
+  for (let i = 0; i < allInputs.length - 1; i++) {
+    let input = allInputs[i];
+    this[input.name] = input.value;
+  }
+  this.isRead = allInputs.pop().checked;
+}
 
 function addBookToLibrary(e) {
   e.preventDefault();
@@ -52,28 +59,26 @@ function addBookToLibrary(e) {
     return;
   }
 
-  const allInputFields = [...inputFields, document.querySelector('.data-entry #finished')];
+  const allInputs = [...inputFields, document.querySelector('.data-entry #finished')];
 
-  console.log(allInputFields);
-  console.dir(allInputFields[3]);
-  const book = {}
+  // console.log(allInputFields);
+  // console.dir(allInputFields[3]);
+  const book = new Book(allInputs);
 
-  for (let i = 0; i < allInputFields.length; i++) {
-    let input = allInputFields[i];
-    if (i < allInputFields.length - 1) {
-      book[input.name] = input.value;
-    } else {
-      book.isRead = input.checked;
-    }
-  }
+  // for (let i = 0; i < allInputFields.length; i++) {
+  //   let input = allInputFields[i];
+  //   if (i < allInputFields.length - 1) {
+  //     book[input.name] = input.value;
+  //   } else {
+  //     book.isRead = input.checked;
+  //   }
+  // }
 
   myLibrary.push(book);
   console.table(myLibrary);
   inputFields.forEach((field) => field.value = "");
-  allInputFields[allInputFields.length - 1].checked = false;
+  allInputs[allInputFields.length - 1].checked = false;
 }
 
 const form = document.querySelector('.data-entry');
 form.addEventListener('submit', addBookToLibrary);
-// let submitBtn = document.querySelector('.data-entry .btn');
-// submitBtn.addEventListener('onsubmit', addBookToLibrary);
