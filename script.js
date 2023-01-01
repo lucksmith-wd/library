@@ -1,66 +1,56 @@
 let myLibrary = [];
 
 // *********************Data validation****************************
-function checkEmpty(e) {
-  item = e.target.parentNode;
-  if (e.target.value.length === 0) {
-    item.classList.remove('illegal-format');
-    item.classList.add('empty');
-  } else {
-    item.classList.remove('empty');
-    if (e.target === inputFields[2]) {
-      checkNumberFormat(e);
-    }
+function validate(e) {
+  if (!isFilledIn(e.target.value, e.target.parentNode)) {
+    return;
+  }
+  if (e.target === inputFields[2]) {
+    isLegalFormat(e.target.value, e.target.parentNode)
   }
 }
 
-function checkNumberFormat(e) {
-  item = e.target.parentNode;
-  if (!(/^[0-9]+$/.test(e.target.value))) {
-    item.classList.add('illegal-format');
-  } else {
-    item.classList.remove('illegal-format');
-  }
-}
-
-const inputFields = [...document.querySelectorAll('.data-entry .form-item:nth-child(-n+3)>input')]
-inputFields.forEach((field) => field.addEventListener('blur', checkEmpty));
-
-// *********************Business logic****************************
-
-function validateNumberOnSubmission(pageNumField) {
-  if (!(/^[0-9]+$/.test(pageNumField.value))) {
-    pageNumField.parentNode.classList.add('illegal-format');
+function isFilledIn(fieldValue, inputItem) {
+  if (fieldValue.length === 0) {
+    inputItem.classList.remove('illegal-format');
+    inputItem.classList.add('empty');
     return false;
   }
+  inputItem.classList.remove('empty');
   return true;
 }
 
-function validateOnSubmit(e) {
-  const inputs = [...e.target].splice(0, 3);
-  const invalidItems = [];
-  for (const input of inputs) {
-    if (input.value.length === 0) {
-      invalidItems.push(input.parentNode);
-    }
-  }
-  for (let item of invalidItems) {
-    item.classList.add('empty');
-  }
-  if (invalidItems.length > 0) {
+function isLegalFormat(fieldValue, inputItem) {
+  if (!(/^[0-9]+$/.test(fieldValue))) {
+    inputItem.classList.add('illegal-format');
     return false;
   }
-  return validateNumberOnSubmission(inputs[inputs.length - 1])
+  inputItem.classList.remove('illegal-format');
+  return true;
 }
+
+function validateOnSubmit(inputs) {
+  for (const input of inputs) {
+    if (!isFilledIn(input.value, input.parentNode)) {
+      return false;
+    }
+  }
+  pageNumField = inputs[inputs.length - 1];
+  return isLegalFormat(pageNumField.value, pageNumField.parentNode);
+}
+
+const inputFields = [...document.querySelectorAll('.data-entry .form-item:nth-child(-n+3)>input')]
+inputFields.forEach((field) => field.addEventListener('blur', validate));
+
+
+// *********************Business logic****************************
+
 
 function addBookToLibrary(e) {
   e.preventDefault();
-  let isValid = validateOnSubmit(e);
-  console.log(isValid);
-  if (!isValid) {
+  if (!validateOnSubmit([...e.target].splice(0, 3))) {
     return;
   }
-
 
   const allInputFields = [...inputFields, document.querySelector('.data-entry #finished')];
 
@@ -77,15 +67,13 @@ function addBookToLibrary(e) {
     }
   }
 
-  // for (const field of inputFields) {
-
-  // }
   myLibrary.push(book);
   console.table(myLibrary);
   inputFields.forEach((field) => field.value = "");
   allInputFields[allInputFields.length - 1].checked = false;
 }
 
-let form = document.addEventListener('submit', addBookToLibrary);
+const form = document.querySelector('.data-entry');
+form.addEventListener('submit', addBookToLibrary);
 // let submitBtn = document.querySelector('.data-entry .btn');
 // submitBtn.addEventListener('onsubmit', addBookToLibrary);
