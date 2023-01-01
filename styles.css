@@ -194,7 +194,10 @@ body {
   box-shadow: 0 1px 4px var(--clr-gray50);
 }
 
-
+.data-entry .empty,
+.data-entry .illegal-format {
+  position: relative;
+}
 
 .data-entry .empty input,
 .data-entry .illegal-format input {
@@ -203,6 +206,8 @@ body {
 
 .data-entry .empty::after,
 .data-entry .illegal-format::after {
+  position: absolute;
+  left: 6rem;
   font-size: 1.2rem;
   color: var(--clr-error);
 }
@@ -305,6 +310,10 @@ img.btn:active {
 
 .icon-wrapper.read::after {
   content: "unread this book";
+}
+
+.icon-wrapper.unread::after {
+  content: "read this book";
 }
 
 .icon-wrapper.delete::after {
