@@ -266,7 +266,8 @@ body {
   color: var(--clr-gray50);
 }
 
-.book-list .icon-wrapper.read {
+.book-list .icon-wrapper.read,
+.book-list .icon-wrapper.unread {
   grid-area: 1/2/3/3;
   border-radius: 50%;
   position: relative;
@@ -329,7 +330,7 @@ img.btn:active {
   padding: 2rem;
   background-color: var(--clr-brand-primary-light);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: max-content;
   gap: 2rem;
 }
